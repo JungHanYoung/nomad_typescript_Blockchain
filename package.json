@@ -1,0 +1,13 @@
+{
+	"name": "typechain",
+	"version": "1.0.0",
+	"description": "Learning Typescript by making a Blockchain with it",
+	"main": "index.js",
+	"repository": "git@github.com:JungHanYoung/nomad_typescript_Blockchain.git",
+	"author": "Hanyoung Jeong <8735132@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"start": "node index.js",
+		"prestart": "tsc"
+	}
+}
