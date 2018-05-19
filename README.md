@@ -1,52 +1,62 @@
-# Typechain
-
-Learning Typescript by making a Blockchain with it
-
-
-# Typed Language
+# Type Of Variable
+### Typescript는 변수마다 타입을 지정해 줄 수 있는데..
 ~~~
-const name = "Nicolas",
-    age = 24,
-    gender = "male";
+const sayHi = (name: string, age: number, gender?: string) => {
+	console.log(`Hello ${name}, you are ${age}, you are a ${gender}`);
+};
 
-const sayHi = (name, age, gender) => {
-    console.log(`Hello ${name}, you are ${age}, you are a ${gender}`);
-}
-
-sayHi(name, age, gender);
+sayHi('Nicolas', 44, 'male');
 
 export {};
 ~~~
+### sayHi란 함수의 매개변수마다 유형을 지정해 줄 수 있다.
 ~~~
-// yarn start
-
-Hello Nicolas, you are 24, you are a male
+// error
+sayHi('Nicolas', '44', 'male');
 ~~~
-만약 sayHi(name, age)로 호출한다면
-
-컴파일 에러가 발생.
+### 이어서 sayHi 함수가 어떤 유형의 값을 돌려줄지 지정할 수 있다.
 ~~~
-... elip
-sayHi(name, age);
+// return nothing
+const sayHi = (name: string, age: number, gender?: string): void => {
+    ...
+}
+// return string
+const sayHi = (name: string, age: number, gender?: string): string => {
+    return `Hello ${name}, you are ${age}, you are a ${gender}`;
+}
+~~~
+---
+---
+## Additional
+### 새로고침 시 자동 실행
+#### 구조 변경
+~~~
+Project
+- dist
+-- index.js > compiled
+- src
+-- index.ts > Before compile
+...
 ~~~
 ~~~
-// yarn start
-index.ts(9,1): error TS2554: Expected 3 arguments, but got 2.
-error An unexpected error occurred: "Command failed.
-~~~
-
-이는 Typescript가 해당 함수의 arg가 3개여야 한다는 것을 체크하기 때문.
-
-해결을 위해선?
-
-~~~
-... elip
-const sayHi = (name, age, gender?) => {
+// tsconfig.json
+{
+    "compilerOptions": {
+        ...
+        "outDir": "dist"
+    },
+    "include": ["src/index.ts"],
     ...
 }
 ~~~
+### tsc-watch 모듈
+> yarn add -D tsc-watch
 ~~~
-// yarn start
-Hello Nicolas, you are 24, you are a undefined
+// package.json
+{
+    ...
+    "scripts": {
+        "start": "tsc-watch --onSuccess \" node dist/index.js \" "
+    }
+}
 ~~~
-gender에 ?를 붙이면 선택적인 arg가 되어 코드가 실행된다.
