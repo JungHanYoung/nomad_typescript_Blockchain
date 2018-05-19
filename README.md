@@ -1,30 +1,36 @@
-# Classes on Typescript
-## 객체지향 타입스크립트
-인터페이스에서 확장된 형태.
-
-메소드 및 생성자를 사용할 수 있다.
+# Creating a Block
+## 블록 객체 정의
 ~~~
-class Human {
-	public name: string;
-	public age: number;
-	public gender: string;
-	constructor(name: string, age: number, gender: string) {
-		this.name = name;
-		this.age = age;
-		this.gender = gender;
+Block
+- index > 해당 블록의 인덱스
+- hash > 해당 블록을 해쉬형태로 바꾼 값
+- previousHash > 이전 블록의 해쉬
+- data > 데이터
+- timestamp > 블록이 만들어진 시간의 timestamp
+~~~
+## 정의에 따른 블록 구현
+~~~
+class Block {
+	public index: number;
+	public hash: string;
+	public previousHash: string;
+	public data: string;
+	public timestamp: number;
+	constructor(index: number, hash: string, previousHash: string, data: string, timestamp: number) {
+		this.index = index;
+		this.hash = hash;
+		this.previousHash = previousHash;
+		this.data = data;
+		this.timestamp = timestamp;
 	}
 }
+~~~
+## 기본 블록체인 생성 후 출력해보기
+~~~
+...
+const genesisBlock: Block = new Block(0, '20202023242', '', 'Hello', 123456);
 
-const person = new Human('lynn', 18, 'female');
+let blockchain: [Block] = [ genesisBlock ];
 
-const sayHi = (person: Human): string => {
-	return `Hello ${person.name}, you are ${person.age}, you are a ${person.gender}!!`;
-};
-
-const msg = sayHi(person);
-
-console.log(msg);
-
-export {};
-
+console.log(blockchain);
 ~~~

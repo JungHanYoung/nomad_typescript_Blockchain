@@ -1,22 +1,30 @@
-class Human {
-	public name: string;
-	public age: number;
-	public gender: string;
-	constructor(name: string, age: number, gender: string) {
-		this.name = name;
-		this.age = age;
-		this.gender = gender;
+/**
+	Block
+	- index > 해당 블록의 인덱스
+	- hash > 해당 블록을 해쉬형태로 바꾼 값
+	- previousHash > 이전 블록의 해쉬
+	- data > 데이터
+	- timestamp > 블록이 만들어진 시간의 timestamp
+ */
+class Block {
+	public index: number;
+	public hash: string;
+	public previousHash: string;
+	public data: string;
+	public timestamp: number;
+	constructor(index: number, hash: string, previousHash: string, data: string, timestamp: number) {
+		this.index = index;
+		this.hash = hash;
+		this.previousHash = previousHash;
+		this.data = data;
+		this.timestamp = timestamp;
 	}
 }
 
-const person = new Human('lynn', 18, 'female');
+const genesisBlock: Block = new Block(0, '20202023242', '', 'Hello', 123456);
 
-const sayHi = (person: Human): string => {
-	return `Hello ${person.name}, you are ${person.age}, you are a ${person.gender}!!`;
-};
+let blockchain: [Block] = [ genesisBlock ];
 
-const msg = sayHi(person);
-
-console.log(msg);
+console.log(blockchain);
 
 export {};
