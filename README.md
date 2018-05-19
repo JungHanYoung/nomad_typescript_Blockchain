@@ -1,41 +1,30 @@
-# Interface On Types
+# Classes on Typescript
+## 객체지향 타입스크립트
+인터페이스에서 확장된 형태.
 
+메소드 및 생성자를 사용할 수 있다.
 ~~~
-const person = {
-	name: 'Nicolas',
-	age: 44,
-	gender: 'male'
+class Human {
+	public name: string;
+	public age: number;
+	public gender: string;
+	constructor(name: string, age: number, gender: string) {
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+	}
+}
+
+const person = new Human('lynn', 18, 'female');
+
+const sayHi = (person: Human): string => {
+	return `Hello ${person.name}, you are ${person.age}, you are a ${person.gender}!!`;
 };
 
-const sayHi = ...;
-
-const msg = sayHi(person);  // error
+const msg = sayHi(person);
 
 console.log(msg);
 
 export {};
-~~~
-### 특정한 객체타입을 interface. 하나의 객체를 arg에 넘길 수 있게 된다.
-~~~
-interface Human {
-    name: string,
-    age: number,
-    gender: string
-}
-~~~
-인터페이스를 만들면 다음과 같이 쓸 수 있다.
-~~~
-const person = {
-    ...
-};
 
-const sayHi = (person: Human): string => {
-    return `Hello ${person.name}, you are ${person.age}, you are a ${person.gender}!!`;
-}
-
-const msg = sayHi(person);
-
-...
 ~~~
-### * assistance 가능
-![...](pictures/picture1.png)
