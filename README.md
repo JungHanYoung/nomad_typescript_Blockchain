@@ -3,63 +3,50 @@
 Learning Typescript by making a Blockchain with it
 
 
-# Typescript 개발환경
-
-## 1. typescript 설치
+# Typed Language
 ~~~
-npm install -g typescript
-또는
-yarn global add typescript
+const name = "Nicolas",
+    age = 24,
+    gender = "male";
+
+const sayHi = (name, age, gender) => {
+    console.log(`Hello ${name}, you are ${age}, you are a ${gender}`);
+}
+
+sayHi(name, age, gender);
+
+export {};
+~~~
+~~~
+// yarn start
+
+Hello Nicolas, you are 24, you are a male
+~~~
+만약 sayHi(name, age)로 호출한다면
+
+컴파일 에러가 발생.
+~~~
+... elip
+sayHi(name, age);
+~~~
+~~~
+// yarn start
+index.ts(9,1): error TS2554: Expected 3 arguments, but got 2.
+error An unexpected error occurred: "Command failed.
 ~~~
 
-## 2. tsconfig.json 생성
+이는 Typescript가 해당 함수의 arg가 3개여야 한다는 것을 체크하기 때문.
+
+해결을 위해선?
 
 ~~~
-// tsconfig.json
-{
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "ES2015",
-        "sourceMap": true
-    },
-    "include": [
-        "index.ts"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+... elip
+const sayHi = (name, age, gender?) => {
+    ...
 }
 ~~~
-
-> compilerOptions
->> module - 모듈 설정
->>
->> target - 컴파일 결과물 ECMAScript 버전 설정
->>
->> sourceMap - 소스맵(*.map) 생성 여부
->
-> include - 컴파일할 typescript 파일 지정
->
-> exclude - 컴파일에 제외할 파일 및 디렉토리
-
-## 3. typescript 명령어 실행
 ~~~
-// 컴파일 전
-Project
-- package.json
-- tsconfig.json
-- index.ts
+// yarn start
+Hello Nicolas, you are 24, you are a undefined
 ~~~
-~~~
-// 컴파일 실행.
-tsc
-~~~
-~~~
-// 컴파일 후
-Project
-- package.json
-- tsconfig.json
-- index.ts
-- index.js
-- index.js.map
-~~~
+gender에 ?를 붙이면 선택적인 arg가 되어 코드가 실행된다.
