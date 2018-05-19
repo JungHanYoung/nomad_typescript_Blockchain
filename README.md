@@ -34,3 +34,20 @@ let blockchain: [Block] = [ genesisBlock ];
 
 console.log(blockchain);
 ~~~
+## 블록의 해쉬를 구하는 function in Block Class
+~~~
+class Block {
+    ...
+    static calculateBlockHash = (index: number, previousHash: string, timestamp: number, data: string): string =>
+    crypto.SHA256(index + previousHash + timestamp + data).toString();
+}
+~~~
+
+## 블록과 관련된 간단한 function 구현
+~~~
+const getBlockchain = (): Block[] => blockchain;
+
+const getLatestBlock = (): Block => blockchain[blockchain.length - 1];
+
+const getNewTimeStamp = (): number => Math.round(new Date().getTime() / 1000);
+~~~
